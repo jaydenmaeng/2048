@@ -36,7 +36,7 @@ while running:
 	# if color is red change it to green and
 	# vice-versa
 	if(color == "red"):
-		color = "purple"
+		color = "pink"
 		
 	else:
 		color = "red"
