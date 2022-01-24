@@ -13,7 +13,7 @@ window = pygame.display.set_mode((400, 500))
 running = True
 
 # setting variable to storecolor
-color = "red"
+color = pygame.COLOR(250,248,239)
 
 # keep game running till running is true
 while running:
@@ -33,11 +33,3 @@ while running:
 	# Update our window
 	pygame.display.flip()
 	
-	# if color is red change it to green and
-	# vice-versa
-	if(color == "red"):
-
-		color = "pink"
-		
-	else:
-		color = "red"
