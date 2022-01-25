@@ -1,3 +1,5 @@
+import pygame
+
 WHITE = (230, 230, 230)
 RED = (217, 35, 22)
 ORANGE = (217, 129, 22)
@@ -10,3 +12,6 @@ PINK = (217, 22, 201)
 BLACK = (59, 59, 59)
 DEFAULT = (250,248,239)
 DEFAULT_DARK = (192,172,156)
+DEFAULT_DARK2 = (120,108,100)
+
+# FONT = pygame.font.SysFont('Comic Sans MS', 30)
