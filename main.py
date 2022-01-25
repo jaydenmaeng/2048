@@ -37,7 +37,7 @@ while running:
 	# vice-versa
 	if(color == "red"):
 
-		color = "pink"
+		color = "yellow"
 		
 	else:
 		color = "red"
