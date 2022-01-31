@@ -18,7 +18,7 @@ while running:
 	fontObj = pygame.font.SysFont("arial", 200)
 	textSurfaceObj = fontObj.render('2048', True, variables.DEFAULT_DARK2, variables.DEFAULT)
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center  = (450, 300)
+	textRectObj.center  = (490, 300)
 	window.blit(textSurfaceObj, textRectObj)
 	pygame.display.update()
 	
