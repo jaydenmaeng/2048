@@ -6,6 +6,8 @@ window = pygame.display.set_mode((1000, 800))
 running = True
 
 pygame.draw.rect(window, variables.DEFAULT_DARK, pygame.Rect(30, 30, 60, 60), 2, 3)
+  
+
 
 while running:
 
@@ -24,11 +26,19 @@ while running:
 	window.blit(textSurfaceObj, textRectObj)
 	board = pygame.Rect(285, 285, 500, 500)
 	pygame.draw.rect(window, variables.DEFAULT_DARK, board, 0, 0, 3, 3, 3, 3)
+	
 
 	for x in range (0, 4):
 		for y in range (0, 4):
 			rect = pygame.Rect(300 + 121.25 * x, 300 + 121.25 * y, 106.25, 106.25)
 			pygame.draw.rect(window, variables.DEFAULT_TAN, rect, 0, 0, 3, 3, 3, 3)
+	pygame.display.update()
+
+  
+	# Drawing Rectangle
+	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(590, 100, 80, 60), 0, 0, 3, 3, 3, 3)
+	textSurfaceObj = fontObj.render('Score', True, variables.DEFAULT_DARK2, variables.DEFAULT)
+	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(680, 100, 100, 60), 0, 0, 3, 3, 3, 3)
 	pygame.display.update()
 	
 	# update window
