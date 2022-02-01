@@ -1,6 +1,8 @@
 import pygame
 
 class Tile:
+    board = list(list())
+    
     def __init__(self, value):
         self.value = value
         

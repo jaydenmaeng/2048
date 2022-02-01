@@ -1,5 +1,6 @@
 import pygame
 import variables
+from tile import Tile
 
 pygame.init()
 window = pygame.display.set_mode((1000, 800))
@@ -49,7 +50,11 @@ while running:
 	textRectObj2.center  = (700, 130)
 	window.blit(textSurfaceObj2, textRectObj2)
 
+	tile = Tile(2)
+	tile.spawnRandom()
+	tile.spawnRandom()
+
 	pygame.display.update()
 	
-	# update window
+	# update window 
 	pygame.display.flip()
