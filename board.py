@@ -32,8 +32,6 @@ while running:
 		for y in range (0, 4):
 			rect = pygame.Rect(300 + 121.25 * x, 300 + 121.25 * y, 106.25, 106.25)
 			pygame.draw.rect(window, variables.DEFAULT_TAN, rect, 0, 0, 3, 3, 3, 3)
-	pygame.display.update()
-
   
 	# Drawing Rectangle
 	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(590, 100, 80, 60), 0, 0, 3, 3, 3, 3)
