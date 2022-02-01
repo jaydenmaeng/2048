@@ -50,7 +50,7 @@ while running:
 	textRectObj2.center  = (700, 130)
 	window.blit(textSurfaceObj2, textRectObj2)
 
-	tile = Tile(2)
+	tile = Tile(window, 2)
 	tile.spawnRandom()
 	tile.spawnRandom()
 

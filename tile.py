@@ -3,9 +3,10 @@ import pygame
 class Tile:
     board = list(list())
     
-    def __init__(self, value):
+    def __init__(self, window, value):
+        self.window = window
         self.value = value
         
-    def spawnRandom(self, window):
+    def spawnRandom(self):
         image = pygame.image.load("2048/" + str(self.value) + '.png')
-        window.blit(image, (300, 300))
+        self.window.blit(image, (300, 300))
