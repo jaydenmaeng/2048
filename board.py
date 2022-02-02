@@ -7,8 +7,6 @@ window = pygame.display.set_mode((1000, 800))
 running = True
 
 pygame.draw.rect(window, variables.DEFAULT_DARK, pygame.Rect(30, 30, 60, 60), 2, 3)
-  
-
 
 while running:
 
@@ -52,8 +50,9 @@ while running:
 
 	tile = Tile(window, 2)
 	tile.spawnRandom()
-	tile.spawnRandom()
-
+	tile1 = Tile(window, 4)
+	tile1.spawnRandom()
+	
 	pygame.display.update()
 	
 	# update window 
