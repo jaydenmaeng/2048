@@ -8,10 +8,12 @@ running = True
 
 pygame.draw.rect(window, variables.DEFAULT_DARK, pygame.Rect(30, 30, 60, 60), 2, 3)
 
-tile1 = tile.Tile(window, 2)
+tile1 = tile.Tile(window)
 tile1.spawnRandom()
-tile2 = tile.Tile(window, 4)
+tile2 = tile.Tile(window)
 tile2.spawnRandom()
+tile3 = tile.Tile(window, 32)
+tile3.spawnRandom()
 	
 while running:
 
@@ -51,8 +53,11 @@ while running:
 	textRectObj2 = textSurfaceObj2.get_rect()
 	textRectObj2.center  = (700, 130)
 	window.blit(textSurfaceObj2, textRectObj2)
-	tile1.window.blit(tile1.image, (300 + 121.25 * tile1.x, 300 + 121.25 * tile1.y))
-	tile2.window.blit(tile2.image, (300 + 121.25 * tile2.x, 300 + 121.25 * tile2.y))
+
+	# spawn two tiles
+	tile1.display()
+	tile2.display()
+	tile3.display()
 
 	pygame.display.update()
 	
