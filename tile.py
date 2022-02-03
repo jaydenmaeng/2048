@@ -22,3 +22,13 @@ class Tile:
         # if not self.isBoardFull():
         # while(self.board[x][y] != None):
         self.board[self.x][self.y] = self
+
+    def leftArrow(self):
+        pass
+
+
+    def rightArrow(self):
+
+    def upArrow(self):
+
+    def downArrow(self):
