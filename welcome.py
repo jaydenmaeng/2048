@@ -26,13 +26,6 @@ while running:
 	textRectObj2 = textSurfaceObj2.get_rect()
 	textRectObj2.center  = (500, 400)
 	window.blit(textSurfaceObj2, textRectObj2)
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 4727a77af3a7dbd4f2f2f10f52baa3728bee6162
 
 	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(450, 440, 100, 60), 0, 0, 3, 3, 3, 3)
 	fontObj3 = pygame.font.SysFont("arial bold", 40)
@@ -42,16 +35,7 @@ while running:
 	window.blit(textSurfaceObj3, textRectObj3)
 
 class Button:
-	
 
-<<<<<<< HEAD
-
-=======
-=======
->>>>>>> 08a680b1472c7eacfba44de289e385062a1deaf4
->>>>>>> 0e0f61a08248a416c01d87cb25a81e40b381224b
-		
->>>>>>> 4727a77af3a7dbd4f2f2f10f52baa3728bee6162
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			run = False	
