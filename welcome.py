@@ -26,6 +26,13 @@ while running:
 	textRectObj2 = textSurfaceObj2.get_rect()
 	textRectObj2.center  = (500, 400)
 	window.blit(textSurfaceObj2, textRectObj2)
+
+	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(450, 440, 100, 60), 0, 0, 3, 3, 3, 3)
+	fontObj3 = pygame.font.SysFont("arial bold", 40)
+	textSurfaceObj3 = fontObj3.render('Start', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
+	textRectObj3 = textSurfaceObj3.get_rect()
+	textRectObj3.center  = (470, 500)
+	window.blit(textSurfaceObj3, textRectObj3)
 		
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
