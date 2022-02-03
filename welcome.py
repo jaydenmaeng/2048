@@ -26,14 +26,7 @@ while running:
 	textRectObj2 = textSurfaceObj2.get_rect()
 	textRectObj2.center  = (500, 400)
 	window.blit(textSurfaceObj2, textRectObj2)
-<<<<<<< HEAD
-
-class Button:
-	
-
-=======
 		
->>>>>>> f2ca8077b74a4ad8e0a819166693393a94f9f442
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			run = False	
