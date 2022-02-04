@@ -42,7 +42,7 @@ while running:
 			pygame.draw.rect(window, variables.DEFAULT_TAN, rect, 0, 0, 3, 3, 3, 3)
   
 	# Drawing Rectangle
-	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(590, 100, 80, 60), 0, 0, 3, 3, 3, 3)
+	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(350, 100, 80, 60), 0, 0, 3, 3, 3, 3)
 
 	fontObj2 = pygame.font.SysFont("arial bold", 20)
 	textSurfaceObj2 = fontObj2.render('Score', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
@@ -50,7 +50,7 @@ while running:
 	textRectObj2.center  = (400, 130)
 	window.blit(textSurfaceObj2, textRectObj2)
 
-	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(680, 100, 100, 60), 0, 0, 3, 3, 3, 3)
+	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(550, 100, 100, 60), 0, 0, 3, 3, 3, 3)
 	fontObj2 = pygame.font.SysFont("arial bold", 20)
 	textSurfaceObj2 = fontObj2.render('Best', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
 	textRectObj2 = textSurfaceObj2.get_rect()
