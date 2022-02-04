@@ -22,6 +22,9 @@ while running:
 		
 		if event.type == pygame.QUIT: # terminate
 			running = False
+		if event.type == pygame.K_LEFT:
+			tile.leftArrow()
+			
 	
 	# set background color 
 	window.fill(variables.DEFAULT)

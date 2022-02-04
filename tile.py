@@ -1,3 +1,4 @@
+from ast import Pass
 import pygame
 import random
 class Tile:
@@ -34,3 +35,17 @@ class Tile:
 
     def display(self):
         self.window.blit(self.image, (300 + 121.25 * self.x, 300 + 121.25 * self.y))
+        self.board[self.x][self.y] = self
+
+    def leftArrow(self):
+        pass
+
+
+    def rightArrow(self):
+        pass
+
+    def upArrow(self):
+        pass
+
+    def downArrow(self):
+        pass
