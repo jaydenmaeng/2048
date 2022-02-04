@@ -34,6 +34,11 @@ while running:
 	textRectObj3.center  = (470, 500)
 	window.blit(textSurfaceObj3, textRectObj3)
 
+	pygame.display.update()
+	
+	# update window 
+	pygame.display.flip()
+
 class Button:
 
 	for event in pygame.event.get():
