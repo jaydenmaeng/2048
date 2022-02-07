@@ -9,11 +9,11 @@ running = True
 pygame.draw.rect(window, variables.DEFAULT_DARK, pygame.Rect(30, 30, 60, 60), 2, 3)
 
 tile1 = tile.Tile(window)
-tile1.spawnRandom()
 tile2 = tile.Tile(window)
-tile2.spawnRandom()
 tile3 = tile.Tile(window, 32)
-tile3.spawnRandom()
+print(str(tile1.x) + " " + str(tile1.y))
+print(str(tile2.x) + " " + str(tile2.y))
+print(str(tile3.x) + " " + str(tile3.y))
 	
 while running:
 
