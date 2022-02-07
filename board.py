@@ -68,8 +68,8 @@ def main():
 	textRectObj2.center  = (730, 115)
 	window.blit(textSurfaceObj2, textRectObj2)
 
-		pygame.display.update()
+	pygame.display.update()
 		
-		# update window 
-		pygame.display.flip()
+	# update window 
+	pygame.display.flip()
 		
