@@ -31,8 +31,13 @@ while running:
 	fontObj3 = pygame.font.SysFont("arial bold", 40)
 	textSurfaceObj3 = fontObj3.render('Start', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
 	textRectObj3 = textSurfaceObj3.get_rect()
-	textRectObj3.center  = (470, 500)
+	textRectObj3.center  = (500, 470)
 	window.blit(textSurfaceObj3, textRectObj3)
+
+	pygame.display.update()
+	
+	# update window 
+	pygame.display.flip()
 
 class Button:
 
