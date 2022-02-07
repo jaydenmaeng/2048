@@ -42,19 +42,19 @@ while running:
 			pygame.draw.rect(window, variables.DEFAULT_TAN, rect, 0, 0, 3, 3, 3, 3)
   
 	# Drawing Rectangle
-	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(590, 100, 100, 70), 0, 0, 3, 3, 3, 3)
+	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(570, 100, 80, 70), 0, 0, 3, 3, 3, 3)
 
-	fontObj2 = pygame.font.SysFont("arial bold", 20)
+	fontObj2 = pygame.font.SysFont("arial bold", 30)
 	textSurfaceObj2 = fontObj2.render('Score', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
 	textRectObj2 = textSurfaceObj2.get_rect()
 	textRectObj2.center  = (610, 130)
 	window.blit(textSurfaceObj2, textRectObj2)
 
-	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(680, 100, 120, 70), 0, 0, 3, 3, 3, 3)
+	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(660, 100, 120, 70), 0, 0, 3, 3, 3, 3)
 	fontObj2 = pygame.font.SysFont("arial bold", 25)
 	textSurfaceObj2 = fontObj2.render('Best', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
 	textRectObj2 = textSurfaceObj2.get_rect()
-	textRectObj2.center  = (725, 115)
+	textRectObj2.center  = (720, 115)
 	window.blit(textSurfaceObj2, textRectObj2)
 
 	# spawn two tiles
