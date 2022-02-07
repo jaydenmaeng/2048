@@ -45,17 +45,17 @@ while running:
 	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(570, 100, 90, 60), 0, 0, 3, 3, 3, 3)
 
 
-	fontObj2 = pygame.font.SysFont("arial bold", 30)
+	fontObj2 = pygame.font.SysFont("arial bold", 25)
 	textSurfaceObj2 = fontObj2.render('Score', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
 	textRectObj2 = textSurfaceObj2.get_rect()
-	textRectObj2.center  = (610, 115)
+	textRectObj2.center  = (615, 115)
 	window.blit(textSurfaceObj2, textRectObj2)
 	
-	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(675, 100, 100, 60), 0, 0, 3, 3, 3, 3)
-	fontObj2 = pygame.font.SysFont("arial bold", 20)
-	textSurfaceObj2 = fontObj2.render('Best:', True, variables.DEFAULT_LIGHT, variables.DEFAULT_TAN)
+	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(675, 100, 110, 60), 0, 0, 3, 3, 3, 3)
+	fontObj2 = pygame.font.SysFont("arial bold", 25)
+	textSurfaceObj2 = fontObj2.render('Best', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
 	textRectObj2 = textSurfaceObj2.get_rect()
-	textRectObj2.center  = (720, 115)
+	textRectObj2.center  = (730, 115)
 	window.blit(textSurfaceObj2, textRectObj2)
 
 	# spawn two tiles
