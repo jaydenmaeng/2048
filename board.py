@@ -64,3 +64,6 @@ def main():
 		# update window 
 		pygame.display.flip()
 		
+
+
+main()
