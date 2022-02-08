@@ -17,7 +17,7 @@ while running:
 	
 	# set background color 
 	window.fill(variables.DEFAULT)
-	fontObj = pygame.font.SysFont("arial", 50)
+	fontObj = pygame.font.SysFont("arial", 75)
 	textSurfaceObj = fontObj.render('2048', True, variables.DEFAULT_DARK2, variables.DEFAULT)
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center  = (100, 80)

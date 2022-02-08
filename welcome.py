@@ -21,10 +21,10 @@ while running:
 	textRectObj.center  = (490, 300)
 	window.blit(textSurfaceObj, textRectObj)
 
-	fontObj2 = pygame.font.SysFont("arial", 75)
+	fontObj2 = pygame.font.SysFont("arial", 25)
 	textSurfaceObj2 = fontObj2.render('By Justin Hwang, David Lee, Jayden Maeng, & Vincent Kim', True, variables.DEFAULT_DARK2, variables.DEFAULT)
 	textRectObj2 = textSurfaceObj2.get_rect()
-	textRectObj2.center  = (50, 350)
+	textRectObj2.center  = (100, 250)
 	window.blit(textSurfaceObj2, textRectObj2)
 
 
