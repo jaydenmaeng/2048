@@ -55,14 +55,23 @@ def main():
 		textRectObj2.center  = (710, 110)
 		window.blit(textSurfaceObj2, textRectObj2)
 
-		# spawn two tiles
-		tile1.display()
-		tile2.display()
+	fontObj2 = pygame.font.SysFont("arial bold", 25)
+	textSurfaceObj2 = fontObj2.render('Score', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
+	textRectObj2 = textSurfaceObj2.get_rect()
+	textRectObj2.center  = (615, 115)
+	window.blit(textSurfaceObj2, textRectObj2)
+	
+	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(675, 100, 110, 60), 0, 0, 3, 3, 3, 3)
+	fontObj2 = pygame.font.SysFont("arial bold", 25)
+	textSurfaceObj2 = fontObj2.render('Best', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
+	textRectObj2 = textSurfaceObj2.get_rect()
+	textRectObj2.center  = (730, 115)
+	window.blit(textSurfaceObj2, textRectObj2)
 
-		pygame.display.update()
+	pygame.display.update()
 		
-		# update window 
-		pygame.display.flip()
+	# update window 
+	pygame.display.flip()
 		
 
 
