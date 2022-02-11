@@ -40,26 +40,13 @@ def main():
 				rect = pygame.Rect(300 + 121.25 * x, 300 + 121.25 * y, 106.25, 106.25)
 				pygame.draw.rect(window, variables.DEFAULT_TAN, rect, 0, 0, 3, 3, 3, 3)
 	
-		# Drawing Rectangle
-		pygame.draw.rect(window, variables.DEFAULT_DARK3, pygame.Rect(590, 80, 80, 60), 0, 0, 3, 3, 3, 3)
-		fontObj2 = pygame.font.SysFont("arial bold", 25)
-		textSurfaceObj2 = fontObj2.render('SCORE', True, variables.DEFAULT_LIGHT, variables.DEFAULT_DARK3)
-		textRectObj2 = textSurfaceObj2.get_rect()
-		textRectObj2.center  = (620, 110)
-		window.blit(textSurfaceObj2, textRectObj2)
-
-		pygame.draw.rect(window, variables.DEFAULT_DARK3, pygame.Rect(680, 80, 100, 60), 0, 0, 3, 3, 3, 3)
-		fontObj2 = pygame.font.SysFont("arial bold", 25)
-		textSurfaceObj2 = fontObj2.render('BEST', True, variables.DEFAULT_LIGHT, variables.DEFAULT_DARK3)
-		textRectObj2 = textSurfaceObj2.get_rect()
-		textRectObj2.center  = (710, 110)
-		window.blit(textSurfaceObj2, textRectObj2)
-
-	fontObj2 = pygame.font.SysFont("arial bold", 25)
-	textSurfaceObj2 = fontObj2.render('Score', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
-	textRectObj2 = textSurfaceObj2.get_rect()
-	textRectObj2.center  = (615, 115)
-	window.blit(textSurfaceObj2, textRectObj2)
+	# set background color 
+	window.fill(variables.DEFAULT)
+	fontObj = pygame.font.SysFont("arial", 75)
+	textSurfaceObj = fontObj.render('2048', True, variables.DEFAULT_DARK2, variables.DEFAULT)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center  = (100, 80)
+	window.blit(textSurfaceObj, textRectObj)
 	
 	pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(675, 100, 110, 60), 0, 0, 3, 3, 3, 3)
 	fontObj2 = pygame.font.SysFont("arial bold", 25)
