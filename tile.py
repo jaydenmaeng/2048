@@ -2,6 +2,9 @@ import pygame
 import random
 class Tile:
     board = [[[] for i in range(4)] for i in range(4)]
+    for i in range(0, 4):
+        for j in range(0, 4):
+            board[i][j] = -1
 
     def __init__(self, window, value=-1):
         self.window = window
@@ -17,16 +20,16 @@ class Tile:
         self.x = random.randrange(0, 4) 
         self.y = random.randrange(0, 4) 
         if not Tile.isBoardFull():
-            while Tile.board[self.x][self.y] != None:
+            while Tile.board[self.x][self.y] != -1:
                 self.x = random.randrange(0, 4) 
                 self.y = random.randrange(0, 4) 
-            Tile.board[self.x][self.y] = self
-            print(str(self.x) + " " + str(self.y))
+            Tile.board[self.x][self.y] = self.value
 
     def isBoardFull():
         for i in range(0, 4):
             for j in range(0, 4):
-                if Tile.board[i][j] == None:
+                print(str(i) + str(j) + str(Tile.board[i][j]))
+                if Tile.board[i][j] == -1:
                     return False
         return True
 

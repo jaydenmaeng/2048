@@ -12,8 +12,9 @@ def main():
 	tile1 = tile.Tile(window)
 	tile2 = tile.Tile(window)
 	# tile3 = tile.Tile(window, 32)
-	print(str(tile1.x) + " " + str(tile1.y))
-	print(str(tile2.x) + " " + str(tile2.y))
+	print(str(tile1.x) + " " + str(tile1.y) + " " + str(tile1.board[tile1.x][tile1.y]))
+	print(str(tile2.x) + " " + str(tile2.y) + " " + str(tile2.board[tile2.x][tile2.y]))
+	print(str(tile.Tile.isBoardFull()))
 
 	while running:
 
