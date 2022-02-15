@@ -1,6 +1,6 @@
 import pygame
 import variables
-import tile
+from tile import Tile
 
 def main():
 		
@@ -9,12 +9,11 @@ def main():
 	running = True
 	pygame.draw.rect(window, variables.DEFAULT_DARK, pygame.Rect(30, 30, 60, 60), 2, 3)
 
-	tile1 = tile.Tile(window)
-	tile2 = tile.Tile(window)
-	# tile3 = tile.Tile(window, 32)
-	print(str(tile1.x) + " " + str(tile1.y) + " " + str(tile1.board[tile1.x][tile1.y]))
-	print(str(tile2.x) + " " + str(tile2.y) + " " + str(tile2.board[tile2.x][tile2.y]))
-	print(str(tile.Tile.isBoardFull()))
+	tile1 = Tile(window)
+	tile2 = Tile(window)
+	# tile3 = Tile(window, 32)
+	# print(tile1)
+	# print(tile2)
 
 	while running:
 
@@ -23,8 +22,19 @@ def main():
 			
 			if event.type == pygame.QUIT: # terminate
 				running = False
-			if event.type == pygame.K_LEFT:
-				tile.leftArrow()
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_LEFT:
+					leftArrow()
+					Tile.printBoard()
+				if event.key == pygame.K_RIGHT:
+					rightArrow()
+					Tile.printBoard()
+				if event.key == pygame.K_UP:
+					upArrow()
+					Tile.printBoard()
+				if event.key == pygame.K_DOWN:
+					downArrow()
+					Tile.printBoard()
 		
 			# set background color 
 		window.fill(variables.DEFAULT)
@@ -66,4 +76,135 @@ def main():
 		pygame.display.flip()
 	pygame.quit()
 		
+def leftArrow():
+	shiftLeft()
+	for j in range(0, 4):
+		for i in range(0, 3):
+			t = Tile.board[i][j]
+			if t == Tile.board[i + 1][j] and t != None:
+				Tile.updateValue(Tile.board[i][j])
+				Tile.display(Tile.board[i][j])
+				Tile.remove(Tile.board[i + 1][j])
+				Tile.display(Tile.board[i + 1][j])
+				i = 0
+	shiftLeft()
+
+def rightArrow():
+	shiftRight()
+	for j in range(0, 4):
+		for i in range(3, 0, -1):
+			t = Tile.board[i][j]
+			if t == Tile.board[i - 1][j] and t != None:
+				Tile.updateValue(Tile.board[i][j])
+				Tile.display(Tile.board[i][j])
+				Tile.remove(Tile.board[i - 1][j])
+				Tile.display(Tile.board[i - 1][j])
+				i = 3
+	shiftRight()
+
+def upArrow():
+	shiftUp()
+	for i in range(0, 4):
+		for j in range(0, 3):
+			t = Tile.board[i][j]
+			t1 = Tile.board[i][j + 1]
+			if t != None and t1 != None and Tile.getValue(t) == Tile.getValue(t1):
+				Tile.updateValue(Tile.board[i][j])
+				Tile.display(Tile.board[i][j])
+				Tile.remove(Tile.board[i][j + 1])
+				Tile.display(Tile.board[i][j + 1])
+				j = 0
+	shiftUp()
+
+def downArrow():
+	shiftDown()
+	for i in range(0, 4):
+		for j in range(3, 0, -1):
+			t = Tile.board[i][j]
+			if t == Tile.board[i][j - 1] and t != None:
+				Tile.updateValue(Tile.board[i][j])
+				Tile.display(Tile.board[i][j])
+				Tile.remove(Tile.board[i][j - 1])
+				Tile.display(Tile.board[i][j - 1])
+				j = 3
+	shiftDown()
+
+def shiftLeft():
+	for j in range(0, 4):
+		row = []
+		count = 0
+		for i in range(0, 4):
+			t = Tile.board[i][j]
+			if t != None:
+				row.append(t)
+				count += 1
+		for temp in row:
+			p = 0
+			while Tile.board[p][j] != temp:
+				p += 1
+			Tile.updateX(temp, p)
+		row.extend([None] * (4 - count))
+		for i in range(0, 4):
+			Tile.board[i][j] = row[i]
+
+
+def shiftRight():
+	for j in range(0, 4):
+		row = []
+		count = 0
+		for i in range(3, -1, -1):
+			t = Tile.board[i][j]
+			if t != None:
+				row.append(t)
+				count += 1
+		for temp in row:
+			p = 3
+			while Tile.board[p][j] != temp:
+				p -= 1
+			Tile.updateX(temp, p)
+		temp = [None] * (4 - count)
+		temp.extend(row)
+		for i in range(0, 4):
+			Tile.board[i][j] = temp[i]
+
+def shiftUp():
+	for i in range(0, 4):
+		col = []
+		count = 0
+		for j in range(0, 4):
+			t = Tile.board[i][j]
+			if t != None:
+				col.append(t)
+				count += 1
+		for temp in col:
+			p = 0
+			while Tile.board[i][p] != temp:
+				p += 1
+			Tile.updateY(temp, p)
+		Tile.board[i] = col
+		Tile.board[i].extend([None] * (4 - count))
+
+def shiftDown():
+	for i in range(0, 4):
+		col = []
+		count = 0
+		for j in range(3, -1, -1):
+			t = Tile.board[i][j]
+			if t != None:
+				col.append(t)
+				count += 1
+		for temp in col:
+			p = 3
+			while Tile.board[i][p] != temp:
+				p -= 1
+			Tile.updateY(temp, p)
+		Tile.board[i] = [None] * (4 - count)
+		Tile.board[i].extend(col)
+
+def rotateLeft():
+	temp = [[[] for i in range(4)] for i in range(4)]
+	for i in range(4):
+		for j in range(4):
+			temp[j][3 - i] = Tile.board[i][j]
+	Tile.board = temp
 main()
