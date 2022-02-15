@@ -17,7 +17,7 @@ class Tile:
                 self.value = 2
         else:
             self.value = value
-        self.image = pygame.image.load("2048/assets/" + str(self.value) + '.png')
+        self.image = pygame.image.load("assets/" + str(self.value) + '.png')
         self.x = random.randrange(0, 4) 
         self.y = random.randrange(0, 4) 
         if not Tile.isBoardFull():
@@ -74,6 +74,6 @@ class Tile:
 
     def display(self):
         if self != None:
-            self.image = pygame.image.load("2048/assets/" + str(self.value) + '.png')
+            self.image = pygame.image.load("assets/" + str(self.value) + '.png')
             self.window.blit(self.image, (300 + 121.25 * self.x, 300 + 121.25 * self.y))
             Tile.board[self.x][self.y] = self
