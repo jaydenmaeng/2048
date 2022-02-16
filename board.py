@@ -1,16 +1,21 @@
 import pygame
 import variables
+import random
 from tile import Tile
 
 def main():
-		
 	pygame.init()
 	window = pygame.display.set_mode((1000, 800))
+	gameBoard = [[[] for i in range(4)] for i in range(4)]
+	for i in range(0, 4):
+		for j in range(0, 4):
+			gameBoard[i][j] = None
+	
 	running = True
 	pygame.draw.rect(window, variables.DEFAULT_DARK, pygame.Rect(30, 30, 60, 60), 2, 3)
 
-	tile1 = Tile(window)
-	tile2 = Tile(window)
+	spawnTile(gameBoard)
+	spawnTile(gameBoard)
 	# tile3 = Tile(window, 32)
 	# print(tile1)
 	# print(tile2)
@@ -23,20 +28,13 @@ def main():
 			if event.type == pygame.QUIT: # terminate
 				running = False
 			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_LEFT:
-					leftArrow()
-					Tile.printBoard()
-				if event.key == pygame.K_RIGHT:
-					rightArrow()
-					Tile.printBoard()
-				if event.key == pygame.K_UP:
-					upArrow()
-					Tile.printBoard()
-				if event.key == pygame.K_DOWN:
-					downArrow()
-					Tile.printBoard()
+				newBoard = move(deepCopy(gameBoard), event.key)
+				if newBoard != gameBoard:
+					spawnTile(newBoard)
+					gameBoard = newBoard
+					displayBoard(window, gameBoard)
 		
-			# set background color 
+		# set background color 
 		window.fill(variables.DEFAULT)
 		fontObj = pygame.font.SysFont("arial bold", 80)
 		textSurfaceObj = fontObj.render('2048', True, variables.DEFAULT_DARK2, variables.DEFAULT)
@@ -66,145 +64,256 @@ def main():
 		textRectObj2.center  = (700, 130)
 		window.blit(textSurfaceObj2, textRectObj2)
 
-		# spawn two tiles
-		tile1.display()
-		tile2.display()
+		# display board
+		displayBoard(window, gameBoard)
+
 
 		pygame.display.update()
 			
 		# update window 
 		pygame.display.flip()
 	pygame.quit()
-		
-def leftArrow():
-	shiftLeft()
+
+def move(board, key):
+	if key == pygame.K_LEFT:
+		return leftArrow(board)
+	elif key == pygame.K_RIGHT:
+		return rightArrow(board)
+	elif key == pygame.K_UP:
+		return upArrow(board)
+	elif key == pygame.K_DOWN:
+		return downArrow(board)
+	else:
+		return board
+
+def deepCopy(board):
+	ret = [[[] for i in range(4)] for i in range(4)]
+	for i in range(4):
+		for j in range(4):
+			ret[i][j] = board[i][j]
+	return ret
+
+def leftArrow(board):
+	shiftLeft(board)
 	for j in range(0, 4):
 		for i in range(0, 3):
-			t = Tile.board[i][j]
-			if t == Tile.board[i + 1][j] and t != None:
-				Tile.updateValue(Tile.board[i][j])
-				Tile.display(Tile.board[i][j])
-				Tile.remove(Tile.board[i + 1][j])
-				Tile.display(Tile.board[i + 1][j])
+			t = board[i][j]
+			t1 = board[i + 1][j]
+			if t != None and t1 != None and Tile.getValue(t) == Tile.getValue(t1):
+				board[i][j] = Tile(Tile.getX(t), Tile.getY(t), Tile.getValue(t) * 2)
+				board[i + 1][j] = None
 				i = 0
-	shiftLeft()
+	shiftLeft(board)
+	return board
 
-def rightArrow():
-	shiftRight()
+def rightArrow(board):
+	shiftRight(board)
 	for j in range(0, 4):
 		for i in range(3, 0, -1):
-			t = Tile.board[i][j]
-			if t == Tile.board[i - 1][j] and t != None:
-				Tile.updateValue(Tile.board[i][j])
-				Tile.display(Tile.board[i][j])
-				Tile.remove(Tile.board[i - 1][j])
-				Tile.display(Tile.board[i - 1][j])
-				i = 3
-	shiftRight()
+			t = board[i][j]
+			t1 = board[i - 1][j]
+			if t != None and t1 != None and Tile.getValue(t) == Tile.getValue(t1):
+				board[i][j] = Tile(Tile.getX(t), Tile.getY(t), Tile.getValue(t) * 2)
+				# Tile.updateValue(board[i][j])
+				board[i - 1][j] = None
+				i = 0
+	shiftRight(board)
+	return board
 
-def upArrow():
-	shiftUp()
+def upArrow(board):
+	shiftUp(board)
 	for i in range(0, 4):
 		for j in range(0, 3):
-			t = Tile.board[i][j]
-			t1 = Tile.board[i][j + 1]
+			t = board[i][j]
+			t1 = board[i][j + 1]
 			if t != None and t1 != None and Tile.getValue(t) == Tile.getValue(t1):
-				Tile.updateValue(Tile.board[i][j])
-				Tile.display(Tile.board[i][j])
-				Tile.remove(Tile.board[i][j + 1])
-				Tile.display(Tile.board[i][j + 1])
+				board[i][j] = Tile(Tile.getX(t), Tile.getY(t), Tile.getValue(t) * 2)
+				board[i][j + 1] = None
 				j = 0
-	shiftUp()
+	shiftUp(board)
+	return board
 
-def downArrow():
-	shiftDown()
+def downArrow(board):
+	shiftDown(board)
 	for i in range(0, 4):
 		for j in range(3, 0, -1):
-			t = Tile.board[i][j]
-			if t == Tile.board[i][j - 1] and t != None:
-				Tile.updateValue(Tile.board[i][j])
-				Tile.display(Tile.board[i][j])
-				Tile.remove(Tile.board[i][j - 1])
-				Tile.display(Tile.board[i][j - 1])
-				j = 3
-	shiftDown()
+			t = board[i][j]
+			t1 = board[i][j - 1]
+			if t != None and t1 != None and Tile.getValue(t) == Tile.getValue(t1):
+				board[i][j] = Tile(Tile.getX(t), Tile.getY(t), Tile.getValue(t) * 2)
+				board[i][j - 1] = None
+				j = 0
+	shiftDown(board)
+	return board
 
-def shiftLeft():
+def shiftLeft(board):
 	for j in range(0, 4):
 		row = []
 		count = 0
 		for i in range(0, 4):
-			t = Tile.board[i][j]
+			t = board[i][j]
 			if t != None:
 				row.append(t)
 				count += 1
 		for temp in row:
 			p = 0
-			while Tile.board[p][j] != temp:
+			while board[p][j] != temp:
 				p += 1
 			Tile.updateX(temp, p)
 		row.extend([None] * (4 - count))
 		for i in range(0, 4):
-			Tile.board[i][j] = row[i]
+			board[i][j] = row[i]
 
-
-def shiftRight():
+def shiftRight(board):
 	for j in range(0, 4):
 		row = []
 		count = 0
-		for i in range(3, -1, -1):
-			t = Tile.board[i][j]
+		for i in range(0, 4):
+			t = board[i][j]
 			if t != None:
 				row.append(t)
 				count += 1
 		for temp in row:
 			p = 3
-			while Tile.board[p][j] != temp:
+			while board[p][j] != temp:
 				p -= 1
 			Tile.updateX(temp, p)
 		temp = [None] * (4 - count)
 		temp.extend(row)
 		for i in range(0, 4):
-			Tile.board[i][j] = temp[i]
+			board[i][j] = temp[i]
 
-def shiftUp():
+def shiftUp(board):
 	for i in range(0, 4):
 		col = []
 		count = 0
 		for j in range(0, 4):
-			t = Tile.board[i][j]
+			t = board[i][j]
 			if t != None:
 				col.append(t)
 				count += 1
 		for temp in col:
 			p = 0
-			while Tile.board[i][p] != temp:
+			while board[i][p] != temp:
 				p += 1
 			Tile.updateY(temp, p)
-		Tile.board[i] = col
-		Tile.board[i].extend([None] * (4 - count))
+		board[i] = col
+		board[i].extend([None] * (4 - count))
 
-def shiftDown():
+def shiftDown(board):
 	for i in range(0, 4):
 		col = []
 		count = 0
-		for j in range(3, -1, -1):
-			t = Tile.board[i][j]
+		for j in range(0, 4):
+			t = board[i][j]
 			if t != None:
 				col.append(t)
 				count += 1
 		for temp in col:
 			p = 3
-			while Tile.board[i][p] != temp:
+			while board[i][p] != temp:
 				p -= 1
 			Tile.updateY(temp, p)
-		Tile.board[i] = [None] * (4 - count)
-		Tile.board[i].extend(col)
+		board[i] = [None] * (4 - count)
+		board[i].extend(col)
 
-def rotateLeft():
-	temp = [[[] for i in range(4)] for i in range(4)]
+def isBoardFull(board):
+	for i in range(0, 4):
+		for j in range(0, 4):
+			if board[i][j] == None:
+				return False
+	return True
+
+def spawnTile(board, value = -1):
+	if value == -1:
+		temp = random.randrange(0, 10)
+		if temp == 0:
+			value = 4
+		else:
+			value = 2
+		x = random.randrange(0, 4) 
+		y = random.randrange(0, 4) 
+
+		if not isBoardFull(board):
+			while board[x][y] != None:
+				x = random.randrange(0, 4)
+				y = random.randrange(0, 4)
+			board[x][y] = Tile(x, y, value)
+	return board[x][y]
+
+def displayBoard(window, board):
 	for i in range(4):
 		for j in range(4):
-			temp[j][3 - i] = Tile.board[i][j]
-	Tile.board = temp
+			tile = board[i][j]
+			if tile != None:
+				if Tile.getAge(tile) < 3:
+					image = pygame.image.load("assets/" + str(Tile.getValue(tile)) + ".png")
+					image = pygame.transform.scale(image, (106.25 + Tile.getAge(tile) * 7, 106.25 + Tile.getAge(tile) * 7))
+					Tile.setAge(tile, Tile.getAge(tile) + 1)
+					window.blit(image, (300 + 121.25 * Tile.getX(tile) - 0.5 * Tile.getAge(tile), \
+						300 + 121.25 * Tile.getY(tile) - 0.5 * Tile.getAge(tile)))
+				elif Tile.getAge(tile) < 6:
+					image = pygame.image.load("assets/" + str(Tile.getValue(tile)) + ".png")
+					image = pygame.transform.scale(image, (106.25 + (6 - Tile.getAge(tile)) * 7, 106.25 + (6 - Tile.getAge(tile)) * 7))
+					Tile.setAge(tile, Tile.getAge(tile) + 1)
+					window.blit(image, (300 + 121.25 * Tile.getX(tile) - 0.5 * Tile.getAge(tile), \
+						300 + 121.25 * Tile.getY(tile) - 0.5 * Tile.getAge(tile)))
+				else:
+					image = pygame.image.load("assets/" + str(Tile.getValue(tile)) + ".png")
+					window.blit(image, (300 + 121.25 * Tile.getX(tile), \
+						300 + 121.25 * Tile.getY(tile)))
+
+# def displayBoard(window, oldBoard, newBoard = []):
+# 	if newBoard == []:
+# 		newBoard = deepCopy(oldBoard)
+# 	for i in range(4):
+# 		for j in range(4):
+# 			if oldBoard[i][j] != None:
+# 				tile = oldBoard[i][j]
+# 				# coord = findInBoard(newBoard, tile)
+# 				# newX = coord[0]
+# 				# newY = coord[1]
+# 				image = pygame.image.load("2048/assets/" + str(Tile.getValue(tile)) + '.png')
+# 				window.blit(image, (300 + 121.25 * Tile.getX(tile), \
+# 					300 + 121.25 * Tile.getY(tile)))
+# 				# if newX != i:
+# 				# 	temp = 0
+# 				# 	while temp <= 10:
+# 				# 		window.blit(image, (300 + 121.25 * Tile.getX(tile) + 12.125 * temp, \
+# 				# 			300 + 121.25 * Tile.getY(tile)))
+# 				# 		# animate
+# 				# 		if newX > i:
+# 				# 				temp += 1
+# 				# 		else:
+# 				# 			temp -= 1
+# 				# elif newY != j:
+# 				# 	temp = 0
+# 				# 	while temp <= 10:
+# 				# 		window.blit(image, (300 + 121.25 * Tile.getX(tile), \
+# 				# 			300 + 121.25 * Tile.getY(tile) + 12.125 * temp))
+# 				# 		# animate
+# 				# 		if newY > j:
+# 				# 				temp += 1
+# 				# 		else:
+# 				# 			temp -= 1
+# 				# else:
+# 				# 	window.blit(image, (300 + 121.25 * Tile.getX(tile), \
+# 				# 		300 + 121.25 * Tile.getY(tile)))
+
+def findInBoard(board, tile):
+	for i in range(4):
+		for j in range(4):
+			if board[i][j] == tile:
+				return [i, j]
+	return [0, 0]
+
+def printBoard(board):
+	for i in range(4):
+		for j in range(4):
+			if board[i][j] != None:
+				print(str(board[i][j]))
+			else:
+				print(str(i) + ", " + str(j) + ": None")
+	print("----------")
+
 main()
