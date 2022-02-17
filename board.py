@@ -27,13 +27,11 @@ def main():
 					printBoard(gameBoard)
 		# set background color 
 		window.fill(variables.DEFAULT)
-		fontObj = pygame.font.SysFont("arial bold", 80)
-		textSurfaceObj = fontObj.render('2048', True, variables.DEFAULT_DARK2, variables.DEFAULT)
-		textRectObj = textSurfaceObj.get_rect()
-		textRectObj.center  = (380, 80)
-		window.blit(textSurfaceObj, textRectObj)
 		board = pygame.Rect(285, 285, 500, 500)
 		pygame.draw.rect(window, variables.DEFAULT_DARK, board, 0, 0, 3, 3, 3, 3)
+
+		image = pygame.image.load("assets/logo_small.png")
+		window.blit(image, (280, 55))
 
 		for x in range (0, 4):
 			for y in range (0, 4):
@@ -41,19 +39,17 @@ def main():
 				pygame.draw.rect(window, variables.DEFAULT_TAN, rect, 0, 0, 3, 3, 3, 3)
 
 		# Drawing Rectangle
-		pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(590, 100, 80, 60), 0, 0, 3, 3, 3, 3)
+		pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(670, 70, 80, 60), 0, 0, 3, 3, 3, 3)
 		fontObj2 = pygame.font.SysFont("arial bold", 20)
-		textSurfaceObj2 = fontObj2.render('Score:', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
+		textSurfaceObj2 = fontObj2.render('Score', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
 		textRectObj2 = textSurfaceObj2.get_rect()
-		textRectObj2.center  = (610, 130)
+		textRectObj2.center  = (710, 80)
 		window.blit(textSurfaceObj2, textRectObj2)
-		
-		# use this: getScore()
 
-		pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(680, 100, 100, 60), 0, 0, 3, 3, 3, 3)
-		fontObj2 = pygame.font.SysFont("arial bold", 20)
+		fontObj2 = pygame.font.SysFont("arial bold", 40)
+		textSurfaceObj2 = fontObj2.render(str(getScore()), True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
 		textRectObj2 = textSurfaceObj2.get_rect()
-		textRectObj2.center  = (700, 130)
+		textRectObj2.center  = (710, 110)
 		window.blit(textSurfaceObj2, textRectObj2)
 
 		# display board
