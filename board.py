@@ -24,7 +24,6 @@ def main():
 					gameBoard = spawnTile(newBoard)
 					displayBoard(window, gameBoard)
 					gameOverCheck(window, gameBoard)
-					printBoard(gameBoard)
 		# set background color 
 		window.fill(variables.DEFAULT)
 		board = pygame.Rect(285, 285, 500, 500)
@@ -106,63 +105,6 @@ def displayBoard(window, board):
 				image = pygame.image.load("assets/" + str(Tile.getValue(tile)) + ".png")
 				window.blit(image, (300 + 121.25 * i, 300 + 121.25 * j))
 	pygame.display.flip()
-
-# def displayBoard(window, board, newBoard = []):
-# 	if newBoard == []:
-# 		newBoard = board
-# 	for i in range(4):
-# 		for j in range(4):
-# 			tile = board[i][j]
-# 			if tile != None:
-# 				if Tile.getAge(tile) < 3:
-# 					image = pygame.image.load("assets/" + str(Tile.getValue(tile)) + ".png")
-# 					image = pygame.transform.scale(image, (106.25 + Tile.getAge(tile) * 7, 106.25 + Tile.getAge(tile) * 7))
-# 					Tile.setAge(tile, Tile.getAge(tile) + 1)
-# 					window.blit(image, (300 + 121.25 * Tile.getX(tile) - 0.5 * Tile.getAge(tile), \
-# 						300 + 121.25 * Tile.getY(tile) - 0.5 * Tile.getAge(tile)))
-# 				elif Tile.getAge(tile) < 6:
-# 					image = pygame.image.load("assets/" + str(Tile.getValue(tile)) + ".png")
-# 					image = pygame.transform.scale(image, (106.25 + (6 - Tile.getAge(tile)) * 7, 106.25 + (6 - Tile.getAge(tile)) * 7))
-# 					Tile.setAge(tile, Tile.getAge(tile) + 1)
-# 					window.blit(image, (300 + 121.25 * Tile.getX(tile) - 0.5 * Tile.getAge(tile), \
-# 						300 + 121.25 * Tile.getY(tile) - 0.5 * Tile.getAge(tile)))
-# 				else:
-# 					image = pygame.image.load("assets/" + str(Tile.getValue(tile)) + ".png")
-# 					window.blit(image, (300 + 121.25 * Tile.getX(tile), \
-# 						300 + 121.25 * Tile.getY(tile)))
-# 					# moveAnimation(window, board, newBoard)
-# 	pygame.display.flip()
-
-def moveAnimation(window, board, newBoard):
-	for i in range(4):
-		for j in range(4):
-			tile = board[i][j]
-			coord = findInBoard(newBoard, tile)
-			if tile != None:
-				image = pygame.image.load("assets/" + str(Tile.getValue(tile)) + ".png")
-				if coord[0] != Tile.getX(tile):
-					if Tile.getMoving(tile) != 0:
-						if coord[0] > Tile.getX(tile):
-							Tile.setMoving(tile, Tile.getMoving(tile) - 1)
-						else:
-							Tile.setMoving(tile, Tile.getMoving(tile) + 1)
-						window.blit(image, (300 + 121.25 * Tile.getX(tile) + 12.125 * Tile.getMoving(tile), \
-							300 + 121.25 * Tile.getY(tile)))
-						print(Tile.getMoving(tile))
-					else:
-						Tile.setMoving(tile, 10 * (coord[0] - Tile.getX(tile)))
-				elif coord[1] != Tile.getY(tile):
-					Tile.setMoving(tile, 10 * (coord[1] - Tile.getY(tile)))
-					if Tile.getMoving(tile) != 0:
-						if coord[1] > Tile.getY(tile):
-							Tile.setMoving(tile, Tile.getMoving(tile) - 1)
-						else:
-							Tile.setMoving(tile, Tile.getMoving(tile) + 1)
-						window.blit(image, (300 + 121.25 * Tile.getX(tile), \
-							300 + 121.25 * Tile.getY(tile) + 12.125 * Tile.getMoving(tile)))
-						print(Tile.getMoving(tile))
-					else:
-						Tile.setMoving(tile, 10 * (coord[1] - Tile.getY(tile)))
 
 def findInBoard(board, tile):
 	for i in range(4):
