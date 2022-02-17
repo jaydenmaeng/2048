@@ -18,6 +18,7 @@ def main():
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT: # terminate
 				running = False
+				pygame.quit()
 			if event.type == pygame.KEYDOWN:
 				newBoard = move(deepCopy(gameBoard), event.key)
 				if newBoard != gameBoard:

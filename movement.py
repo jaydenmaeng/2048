@@ -40,7 +40,6 @@ def spawnTile(board, value = -1):
                 x = random.randrange(0, 4)
                 y = random.randrange(0, 4)
             board[x][y] = Tile(x, y, value)
-            updateScore(value)
     return board
 
 def move(board, key):
