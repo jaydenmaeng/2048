@@ -67,7 +67,7 @@ def main():
 		# display board
 		displayBoard(window, gameBoard)
 
-
+		# update window 
 		pygame.display.update()
 			
 		# update window 
