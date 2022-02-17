@@ -1,7 +1,9 @@
 from decimal import ROUND_DOWN
+from multiprocessing.sharedctypes import Value
 import pygame
 import random
 from tile import Tile
+from board import Score
 
 def checkWin(board):
     for i in range(0, 4):
@@ -50,6 +52,10 @@ def move(board, key):
 	else:
 		return board
 
+def updateScore(value):
+    score += value
+
+
 def upArrow(board):
 	board = shiftUp(board)
 	for i in range(0, 4):
@@ -59,7 +65,7 @@ def upArrow(board):
 			if t != None and t1 != None and Tile.getValue(t) == Tile.getValue(t1):
 				board[i][j] = Tile(Tile.getX(t), Tile.getY(t), Tile.getValue(t) * 2)
 				board[i][j + 1] = None
-				j = 0
+				j = 0, updateScore(Tile.getValue(t) * 2)
 	board = shiftUp(board)
 	return board
 
@@ -72,7 +78,7 @@ def downArrow(board):
 			if t != None and t1 != None and Tile.getValue(t) == Tile.getValue(t1):
 				board[i][j] = Tile(Tile.getX(t), Tile.getY(t), Tile.getValue(t) * 2)
 				board[i][j - 1] = None
-				j = 0
+				j = 0, updateScore(Tile.getValue(t) * 2)
 	board = shiftDown(board)
 	return board
 

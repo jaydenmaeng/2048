@@ -3,6 +3,8 @@ import variables
 import random
 from movement import *
 from tile import Tile
+class Score:
+	score = 0
 
 def main():
 	pygame.init()
