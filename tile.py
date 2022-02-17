@@ -8,6 +8,7 @@ class Tile:
         self.x = x
         self.y = y
         self.age = 0
+        self.moving = 0
 
     def __str__(self):
         if self != None:
@@ -39,3 +40,10 @@ class Tile:
 
     def setAge(self, age):
         self.age = age
+
+    def getMoving(self):
+        return self.moving
+
+    def setMoving(self, moving):
+        self.moving = moving
+        return moving
