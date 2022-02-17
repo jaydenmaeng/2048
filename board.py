@@ -23,7 +23,6 @@ def main():
 				if newBoard != gameBoard:
 					gameBoard = spawnTile(newBoard)
 					displayBoard(window, gameBoard)
-					gameOverCheck(window, gameBoard)
 		# set background color 
 		window.fill(variables.DEFAULT)
 		board = pygame.Rect(285, 285, 500, 500)
@@ -52,7 +51,8 @@ def main():
 		window.blit(textSurfaceObj2, textRectObj2)
 
 		# display board
-		displayBoard(window, gameBoard)
+		if not gameOverCheck(window, gameBoard):
+			displayBoard(window, gameBoard)
 		pygame.display.update()
 		pygame.display.flip()
 	pygame.quit()
@@ -116,12 +116,13 @@ def findInBoard(board, tile):
 def gameOverCheck(window, board):
 	if isBoardFull(board):
 		pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(285, 285, 500, 500), 0, 0, 3, 3, 3, 3)
-		fontObj = pygame.font.SysFont("arial bold", 20)
-		textSurfaceObj = fontObj.render('You lose!', True, variables.DEFAULT_DARK2, variables.DEFAULT_DARK)
+		fontObj = pygame.font.SysFont("arial bold", 70)
+		textSurfaceObj = fontObj.render('You lose!', True, variables.DEFAULT_DARK2, variables.DEFAULT_TAN)
 		textRectObj = textSurfaceObj.get_rect()
-		textRectObj.center  = (610, 130)
+		textRectObj.center  = (550, 400)
 		window.blit(textSurfaceObj, textRectObj)
-		pygame.display.flip()
+		return True
+	return False
 
 def reset(window):
 	board = [[[] for i in range(4)] for j in range(4)]
