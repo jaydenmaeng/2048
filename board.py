@@ -3,8 +3,6 @@ import variables
 import random
 from movement import *
 from tile import Tile
-class Score:
-	score = 0
 
 def main():
 	pygame.init()
@@ -49,6 +47,8 @@ def main():
 		textRectObj2 = textSurfaceObj2.get_rect()
 		textRectObj2.center  = (610, 130)
 		window.blit(textSurfaceObj2, textRectObj2)
+		
+		# use this: getScore()
 
 		pygame.draw.rect(window, variables.DEFAULT_TAN, pygame.Rect(680, 100, 100, 60), 0, 0, 3, 3, 3, 3)
 		fontObj2 = pygame.font.SysFont("arial bold", 20)

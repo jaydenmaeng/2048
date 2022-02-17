@@ -3,7 +3,9 @@ from multiprocessing.sharedctypes import Value
 import pygame
 import random
 from tile import Tile
-from board import Score
+
+class Score:
+    score = 0
 
 def checkWin(board):
     for i in range(0, 4):
@@ -53,8 +55,10 @@ def move(board, key):
 		return board
 
 def updateScore(value):
-    score += value
+    Score.score += value
 
+def getScore(value):
+    return Score.score
 
 def upArrow(board):
 	board = shiftUp(board)
